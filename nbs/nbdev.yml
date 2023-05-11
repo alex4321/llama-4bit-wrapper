@@ -4,6 +4,6 @@ project:
 website:
   title: "llama-wrapper"
   site-url: "https://alex4321.github.io/llama-wrapper"
-  description: "llama wrapper"
+  description: "It's a wrapper for https://github.com/johnsmith0031/alpaca_lora_4bit which allows you to do all the monkeypatching of the library without writing a bunch of boilerplate."
   repo-branch: main
   repo-url: "https://github.com/alex4321/llama-wrapper"

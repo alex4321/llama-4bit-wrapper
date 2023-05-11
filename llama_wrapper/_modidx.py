@@ -11,4 +11,4 @@ d = { 'settings': { 'branch': 'main',
                                                                                            'llama_wrapper/core.py'),
                                     'llama_wrapper.core._apply_xformers_monkeypatch': ( 'core.html#_apply_xformers_monkeypatch',
                                                                                         'llama_wrapper/core.py'),
-                                    'llama_wrapper.core.import_alpaca': ('core.html#import_alpaca', 'llama_wrapper/core.py')}}}
+                                    'llama_wrapper.core.import_llama': ('core.html#import_llama', 'llama_wrapper/core.py')}}}
