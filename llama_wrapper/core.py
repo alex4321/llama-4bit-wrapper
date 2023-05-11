@@ -22,7 +22,15 @@ def _apply_xformers_monkeypatch():
     hijack_llama_attention()
 
 # %% ../nbs/00_core.ipynb 7
-def import_llama(use_flash_attention: bool, use_xformers: bool, autograd_4bit_cuda: bool, autograd_4bit_triton: bool):
+def import_llama(
+        use_flash_attention: bool, # Use flash attention monkeypatch or not (shouldn't be used with use_xformerts)
+        use_xformers: bool, # Use xformers monkeypatch or not (shouldn't be used with use_flash_attention)
+        autograd_4bit_cuda: bool, # Use CUDA backend for 4bit stuff
+        autograd_4bit_triton: bool # Use Triton backend for 4bit stuff
+    ): #load_llama_model_4bit_low_ram / load_llama_model_4bit_low_ram_and_offload / model_to_half / model_to_float / Autograd4bitQuantLinear / AMPWrapper
+    """
+    Do all the monkeypatching than return important objects of alpaca_lora_4bit library (load_llama_model_4bit_low_ram, load_llama_model_4bit_low_ram_and_offload, model_to_half, model_to_float, Autograd4bitQuantLinear, AMPWrapper)
+    """
     _apply_peft_tuners_monkeypatch()
     assert not (use_flash_attention and use_xformers)
     if use_flash_attention:
