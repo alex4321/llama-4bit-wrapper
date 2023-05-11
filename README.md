@@ -31,7 +31,7 @@ else:
 Instead it provide you a function like next:
 
 ``` python
-load_llama_model_4bit_low_ram, _, model_to_half, _, _, AMPWrapper = import_alpaca(
+load_llama_model_4bit_low_ram, _, model_to_half, _, _, AMPWrapper = import_llama(
     use_flash_attention=True,
     use_xformers=False,
     autograd_4bit_cuda=False,
@@ -62,7 +62,7 @@ In progress
 
 ``` python
 # Init modules
-load_llama_model_4bit_low_ram, _, model_to_half, _, _, AMPWrapper = import_alpaca(
+load_llama_model_4bit_low_ram, _, model_to_half, _, _, AMPWrapper = import_llama(
     use_flash_attention=True,
     use_xformers=False,
     autograd_4bit_cuda=False,
