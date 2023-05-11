@@ -54,9 +54,7 @@ which run all the monkeypatching inside.
 
 ## Install
 
-``` sh
-pip install llama_wrapper
-```
+In progress
 
 ## How to use
 
@@ -112,3 +110,7 @@ It should give you something similar to this (tested it using Geforce
     “I’m not saying that we always have to be happy, or that life always has to be perfect. But I do believe that we should strive to cultivate happiness and positivity in all areas of our lives, and that we should surround ourselves with people and things that bring us joy.
     “I believe that when we are surrounded by negativity, fear, and judgment, it can dull our light and keep
     27.77907705307007
+
+### Finetuning example
+
+In progress
