@@ -11,4 +11,6 @@ d = { 'settings': { 'branch': 'main',
                                                                                            'llama_wrapper/core.py'),
                                     'llama_wrapper.core._apply_xformers_monkeypatch': ( 'core.html#_apply_xformers_monkeypatch',
                                                                                         'llama_wrapper/core.py'),
-                                    'llama_wrapper.core.import_llama': ('core.html#import_llama', 'llama_wrapper/core.py')}}}
+                                    'llama_wrapper.core.import_llama': ('core.html#import_llama', 'llama_wrapper/core.py')},
+            'llama_wrapper.finetune': { 'llama_wrapper.finetune.lora_model_zeros_and_scales_to_half': ( 'finetune.html#lora_model_zeros_and_scales_to_half',
+                                                                                                        'llama_wrapper/finetune.py')}}}

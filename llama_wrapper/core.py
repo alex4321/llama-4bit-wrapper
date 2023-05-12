@@ -29,7 +29,7 @@ def import_llama(
         autograd_4bit_triton: bool # Use Triton backend for 4bit stuff
     ): #load_llama_model_4bit_low_ram / load_llama_model_4bit_low_ram_and_offload / model_to_half / model_to_float / Autograd4bitQuantLinear / AMPWrapper
     """
-    Do all the monkeypatching than return important objects of alpaca_lora_4bit library (load_llama_model_4bit_low_ram, load_llama_model_4bit_low_ram_and_offload, model_to_half, model_to_float, Autograd4bitQuantLinear, AMPWrapper)
+    Do all the monkeypatching than return important objects of alpaca_lora_4bit library (arg_parser, train_data, load_llama_model_4bit_low_ram, load_llama_model_4bit_low_ram_and_offload, model_to_half, model_to_float, apply_gradient_checkpointing, Autograd4bitQuantLinear, AMPWrapper)
     """
     _apply_peft_tuners_monkeypatch()
     assert not (use_flash_attention and use_xformers)
@@ -47,5 +47,7 @@ def import_llama(
     from alpaca_lora_4bit.autograd_4bit import load_llama_model_4bit_low_ram, load_llama_model_4bit_low_ram_and_offload, Autograd4bitQuantLinear, \
         model_to_half, model_to_float
     from alpaca_lora_4bit.amp_wrapper import AMPWrapper
+    from alpaca_lora_4bit import train_data, arg_parser
+    from alpaca_lora_4bit.gradient_checkpointing import apply_gradient_checkpointing
 
-    return load_llama_model_4bit_low_ram, load_llama_model_4bit_low_ram_and_offload, model_to_half, model_to_float, Autograd4bitQuantLinear, AMPWrapper
+    return arg_parser, train_data, load_llama_model_4bit_low_ram, load_llama_model_4bit_low_ram_and_offload, model_to_half, model_to_float, apply_gradient_checkpointing, Autograd4bitQuantLinear, AMPWrapper

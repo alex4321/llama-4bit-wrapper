@@ -62,7 +62,7 @@ In progress
 
 ``` python
 # Init modules
-load_llama_model_4bit_low_ram, _, model_to_half, _, _, AMPWrapper = import_llama(
+_, _, load_llama_model_4bit_low_ram, _, model_to_half, _, _, _, AMPWrapper = import_llama(
     use_flash_attention=True,
     use_xformers=False,
     autograd_4bit_cuda=False,
@@ -113,4 +113,64 @@ It should give you something similar to this (tested it using Geforce
 
 ### Finetuning example
 
-In progress
+``` python
+model, tokenizer = load_llama_model_4bit_low_ram(
+    config_path="../vicuna-13b-GPTQ-4bit-128g/",
+    model_path="../vicuna-13b-GPTQ-4bit-128g/vicuna-13b-4bit-128g.safetensors",
+    groupsize=128,
+    is_v1_model=False,
+)
+tokenizer.pad_token_id = 0
+
+dataset = train_data.TrainTxt(
+    dataset="01_alpaca_text.txt",
+    val_set_size=0,
+    tokenizer=tokenizer,
+    cutoff_len=256,
+)
+dataset.prepare_data(thd=-1, use_eos_token=1)
+
+lora_config = LoraConfig(
+    r=8,
+    lora_alpha=16,
+    target_modules=["q_proj", "v_proj"],
+    lora_dropout=0.0,
+    bias="none",
+    task_type="CAUSAL_LM",
+)
+lora_model = get_peft_model(model, lora_config)
+lora_model = lora_model_zeros_and_scales_to_half(lora_model)
+
+apply_gradient_checkpointing(lora_model, checkpoint_ratio=1)
+
+training_arguments = TrainingArguments(
+    per_device_train_batch_size=1,
+    gradient_accumulation_steps=1,
+    warmup_steps=5,
+    optim="adamw_torch",
+    num_train_epochs=10,
+    learning_rate=3e-4,
+    fp16=True,
+    logging_steps=20,
+    evaluation_strategy="no",
+    save_strategy="steps",
+    eval_steps=None,
+    save_steps=50,
+    output_dir="lora-output-directory",
+    save_total_limit=3,
+    load_best_model_at_end=False,
+    ddp_find_unused_parameters=False,
+    report_to="none",
+)
+
+trainer = Trainer(
+    lora_model,
+    train_dataset=dataset.train_data,
+    eval_dataset=dataset.val_data,
+    args=training_arguments,
+    data_collator=DataCollatorForLanguageModeling(tokenizer, mlm=False)
+)
+lora_model.config.use_cache = False
+
+trainer.train()
+```
