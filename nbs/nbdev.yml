@@ -2,8 +2,8 @@ project:
   output-dir: _docs
 
 website:
-  title: "llama-wrapper"
-  site-url: "https://alex4321.github.io/llama-wrapper"
+  title: "llama-4bit-wrapper"
+  site-url: "https://alex4321.github.io/llama-4bit-wrapper"
   description: "It's a wrapper for https://github.com/johnsmith0031/alpaca_lora_4bit which allows you to do all the monkeypatching of the library without writing a bunch of boilerplate."
   repo-branch: main
-  repo-url: "https://github.com/alex4321/llama-wrapper"
+  repo-url: "https://github.com/alex4321/llama-4bit-wrapper"
