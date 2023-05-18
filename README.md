@@ -54,7 +54,11 @@ which run all the monkeypatching inside.
 
 ## Install
 
-In progress
+Since alpaca-lora-4bit is not published to pypi yet and no good way to
+push github dependency to pypi - I can’t publish this package here. So
+just use the following dependency:
+
+    llama_4bit_wrapper @ git+https://github.com/alex4321/llama-4bit-wrapper@stable
 
 ## How to use
 
